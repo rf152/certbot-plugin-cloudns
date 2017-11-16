@@ -6,7 +6,7 @@ from certbot import interfaces
 import zope.interface
 
 from certbot.plugins import dns_common
-from cloudns.api import Api as _cloudnsapi
+from cloudnsapi.api import Api as _cloudnsapi
 
 
 ACCOUNT_URL = 'https://www.cloudns.net/api-settings/'
@@ -47,7 +47,6 @@ class Authenticator(dns_common.DNSAuthenticator):
         zones = self._get_cloudns_client().list_zones()
 
         match = {'name': ''}
-        logger.info(zones)
         for zone in zones:
             if zone['zone'] != 'domain':
                 continue
